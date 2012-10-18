@@ -18,7 +18,6 @@ ActionMailer::Base.smtp_settings = {
 
 ### PHP
 
-Add to factories.yml
 ```php
 $this->Email->smtpOptions = array(
 'port'=>'10587',
@@ -27,12 +26,10 @@ $this->Email->smtpOptions = array(
 'password'=>'your-api-password',
 );
 $this->Email->delivery = 'smtp';
-$this->Email->from = 'Your Name ';
+$this->Email->from = 'Your Name';
 $this->Email->to = 'Recipient Name ';
 $this->set('name', 'Recipient Name');
-$this->Email->subject = 'My Subject';
-$this->Email->template = 'registration';
-$this->Email->sendAs = 'both';
+$this->Email->subject = 'Subject';
 $this->Email->send();
 ```
 
