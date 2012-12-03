@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Staging-mail-setup by chap</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Staging-mail-setup</h1>
+        <h2>Configuration settings for Staging Mail</h2>
+        <a href="https://github.com/chap/staging-mail-setup" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Staging Mail Setup</h1>
+
+<p>Signup for a free account at <a href="http://www.stagingmail.com">stagingmail.com</a></p>
+
+<h3>Rails</h3>
+
+<p>Add to config/environments/development.rb and any other environment you want</p>
+
+<div class="highlight"><pre><span class="no">ActionMailer</span><span class="o">::</span><span class="no">Base</span><span class="o">.</span><span class="n">smtp_settings</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="ss">:user_name</span> <span class="o">=&gt;</span> <span class="s2">"your@email.com"</span><span class="p">,</span>
+  <span class="ss">:password</span> <span class="o">=&gt;</span> <span class="s2">"your-api-password"</span><span class="p">,</span>
+  <span class="ss">:address</span> <span class="o">=&gt;</span> <span class="s2">"smtp.stagingmail.com"</span><span class="p">,</span>
+  <span class="ss">:port</span> <span class="o">=&gt;</span> <span class="mi">10587</span><span class="p">,</span>
+  <span class="ss">:authentication</span> <span class="o">=&gt;</span> <span class="ss">:plain</span><span class="p">,</span>
+  <span class="ss">:enable_starttls_auto</span> <span class="o">=&gt;</span> <span class="kp">true</span>
+<span class="p">}</span>
+</pre></div>
+
+<h3>PHP</h3>
+
+<div class="highlight"><pre><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Email</span><span class="o">-&gt;</span><span class="na">smtpOptions</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+<span class="s1">'port'</span><span class="o">=&gt;</span><span class="s1">'10587'</span><span class="p">,</span>
+<span class="s1">'host'</span> <span class="o">=&gt;</span> <span class="s1">'smtp.stagingmail.com'</span><span class="p">,</span>
+<span class="s1">'username'</span><span class="o">=&gt;</span><span class="s1">'your@email.com'</span><span class="p">,</span>
+<span class="s1">'password'</span><span class="o">=&gt;</span><span class="s1">'your-api-password'</span><span class="p">,</span>
+<span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Email</span><span class="o">-&gt;</span><span class="na">delivery</span> <span class="o">=</span> <span class="s1">'smtp'</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Email</span><span class="o">-&gt;</span><span class="na">from</span> <span class="o">=</span> <span class="s1">'Your Name'</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Email</span><span class="o">-&gt;</span><span class="na">to</span> <span class="o">=</span> <span class="s1">'Recipient Name '</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'Recipient Name'</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Email</span><span class="o">-&gt;</span><span class="na">subject</span> <span class="o">=</span> <span class="s1">'Subject'</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">Email</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+</pre></div>
+
+<h3>Django</h3>
+
+<p>Add to settings.py</p>
+
+<div class="highlight"><pre><span class="n">EMAIL_HOST</span> <span class="o">=</span> <span class="s">'smtp.stagingmail.com'</span>
+<span class="n">EMAIL_HOST_USER</span> <span class="o">=</span> <span class="s">'your@email.com'</span>
+<span class="n">EMAIL_HOST_PASSWORD</span> <span class="o">=</span> <span class="s">'your-api-password'</span>
+<span class="n">EMAIL_PORT</span> <span class="o">=</span> <span class="mi">10587</span>
+<span class="n">EMAIL_USE_TLS</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/chap/staging-mail-setup/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/chap/staging-mail-setup/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/chap/staging-mail-setup"></a> is maintained by <a href="https://github.com/chap">chap</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
